@@ -14,4 +14,10 @@ Editing a byte in 2 nibbles
 A15 low  A11-A8 lower nibble
 A15 high A11-A8 higher nibble
 
+OS with all commands via sense switches
 
+Simon says style game using sense switches
+try to toggle the switch after exactly 10 seconds
+use two sense switches as portals to move a bit around (just a bit of fun)
+Z-machine text adventure engine (front panel only)
+navigate a 2d landscape using the sense switches to move up,down,left and right (could be really cool)
