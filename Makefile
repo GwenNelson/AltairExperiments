@@ -17,4 +17,14 @@ bin/%.hex: src/%.asm
 	asm8080 -Iinclude/ -obin/$* -lbin/$*.lst $<
 endif
 
-all: bin/cylon.hex bin/cylon.bin bin/frontecho.hex bin/frontecho.bin bin/rotater.hex bin/rotater.bin
+HEXFILES:=bin/cylon.hex\
+	  bin/frontecho.hex\
+	  bin/rotater.hex\
+	  bin/nibedit.hex
+
+BINFILES:=bin/cylon.bin\
+	  bin/frontecho.bin\
+	  bin/rotater.bin\
+	  bin/nibedit.hex
+
+all: $(HEXFILES) $(BINFILES)

@@ -1,0 +1,17 @@
+Editing a byte using the front panel sense switches and rotation
+A13-A8 input
+A14    shift left
+A15    submit
+
+Editing a byte using the front panel sense switches without rotation
+A14-A8 input
+raise A15
+raise/lower A14 to set value of A15
+lower A15
+submitted
+
+Editing a byte in 2 nibbles
+A15 low  A11-A8 lower nibble
+A15 high A11-A8 higher nibble
+
+
