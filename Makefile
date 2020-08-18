@@ -17,4 +17,4 @@ bin/%.hex: src/%.asm
 	asm8080 -obin/$* -lbin/$*.lst $<
 endif
 
-all: bin/cylon.hex bin/cylon.bin
+all: bin/cylon.hex bin/cylon.bin bin/frontecho.hex bin/frontecho.bin bin/rotater.hex bin/rotater.bin
