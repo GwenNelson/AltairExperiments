@@ -1,0 +1,58 @@
+			; Cylon-like lights
+			;
+			; This program displays on the leftmost half of the memory bus LEDs a cylon-like sweeping effect
+			; Inspired by kill-the-bit and battlestar galactica
+			
+			
+     7 0000 11 00 80	        lxi  d,8000h  ; init display register
+     8 0003 21 00 00	        lxi  h,0000h  ; init h:l for timer
+     9 0006 01 03 00	        lxi  b,0003h  ; init timer delay value for timer
+			
+			right_loop:
+    12 0009 CD 25 00		call display_out ; display current display register
+    13 000C 7A			mov a,d		 ; move into a and rotate right
+    14 000D 0F			rrc
+    15 000E 57			mov d,a
+    16 000F FE 01		cpi 1            ; check if the display register is equal to 1
+    17 0011 C2 09 00		jnz right_loop   ; if not, repeat the loop
+    18 0014 C3 17 00		jmp left_loop    ; if we hit 1, start moving left
+			
+			left_loop:
+    21 0017 CD 25 00		call display_out ; same as above
+    22 001A 7A			mov a,d
+    23 001B 07			rlc              ; rotate left
+    24 001C 57			mov d,a
+    25 001D FE 80		cpi 128          ; if we hit 128, start moving right
+    26 001F C2 17 00		jnz left_loop
+    27 0022 C3 09 00		jmp right_loop
+			
+			display_out:
+    30 0025 1A			ldax d ; display contents of display register on output LEDs by loading
+    31 0026 1A			ldax d ; this sets the memory bus to the contents of the register, the high byte is seen on the leftmost LEDs
+    32 0027 1A			ldax d ; we repeat this 4 times and use the delay loop below to ensure that most of the time, the LEDs show the display register
+    33 0028 1A			ldax d ; otherwise the memory bus shows the rest of the code running constantly and human eyes never see the leftmost LEDs change, just a blur
+			
+    35 0029 09			dad  b ; add timer delay value to h:l with carry
+    36 002A D2 25 00		jnc display_out ; if we didn't carry, keep on showing output and adding timer delay value
+    37 002D C9			ret             ; if we did carry, return to caller
+			
+
+
+*******************************************************************************
+                                 Symbols table
+*******************************************************************************
+
+Names		Types	Values
+-----		-----	------
+right_loop	Label	00009h
+left_loop	Label	00017h
+display_out	Label	00025h
+
+Statistics
+----------
+"Name"	= 0
+"EQU"	= 0
+"SET"	= 0
+Labels	= 3
+
+

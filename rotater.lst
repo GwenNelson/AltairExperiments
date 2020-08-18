@@ -1,0 +1,83 @@
+			; Front panel rotater
+			;
+			; Reads sense switches at startup and then rotates them around
+			; To run, load into memory in the halt state and before hitting run set the sense switches to a pattern
+			
+     6 0000 01 03 00	        lxi  b,0003h  ; init timer delay value for timer, we set this quite high because fast feedback is important
+			
+				include display.asm
+			; this routine takes as input the following:
+			;       DE: the display value
+			;       BC: the delay value for display timer - the bigger the value the less time the display is lit up for
+			; the following registers are clobbered:
+			;       A
+			;       BC
+			;       HL
+     8 0003 C3 12 00		jmp disp_inc_end
+			display_out:
+    10 0006 21 00 00	        lxi  h,0000h  ; init h:l for timer
+			        ; we display the contents of the output register by repeating this in a loop
+			disp_out_loop:
+    13 0009 1A		        ldax d
+    14 000A 1A		        ldax d
+    15 000B 1A		        ldax d
+    16 000C 1A		        ldax d
+    17 000D 09		        dad  b
+    18 000E D2 09 00	        jnc  disp_out_loop
+    19 0011 C9		        ret
+			
+			disp_inc_end:
+			
+    10 0012 DB FF		in 0ffh       ; read the sense switches
+    11 0014 32 38 00		sta input_var ; store it into input_var
+			main_loop:
+    13 0017 3A 38 00		lda input_var
+    14 001A CD 2E 00		call rotate_it
+    15 001D 32 38 00		sta input_var
+			
+    17 0020 57			mov d,a
+    18 0021 CD 06 00		call display_out
+			
+				; allow to update the pattern by setting a new one and then raising A15
+    21 0024 DB FF		in 0ffh
+    22 0026 E6 80		ani 080h
+    23 0028 C4 30 00		cnz update_it
+    24 002B C3 17 00		jmp main_loop
+			
+			rotate_it:
+    27 002E 07			rlc      ; rotate everything left
+    28 002F C9			ret
+			
+			update_it:
+    31 0030 DB FF		in 0ffh
+    32 0032 E6 7F		ani 07fh  ; lose the A15 bit
+    33 0034 32 38 00		sta input_var
+    34 0037 C9			ret
+			
+			input_var:
+    37 0038			db 0
+            00 
+
+
+*******************************************************************************
+                                 Symbols table
+*******************************************************************************
+
+Names			Types	Values
+-----			-----	------
+display_out		Label	00006h
+disp_out_loop		Label	00009h
+disp_inc_end		Label	00012h
+main_loop		Label	00017h
+rotate_it		Label	0002Eh
+update_it		Label	00030h
+input_var		Label	00038h
+
+Statistics
+----------
+"Name"	= 0
+"EQU"	= 0
+"SET"	= 0
+Labels	= 7
+
+

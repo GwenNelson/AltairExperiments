@@ -1,0 +1,10 @@
+single bit test:
+	put value to test in A
+	ani 01h            ; test rightmost bit
+	jz something       ; jump to something if the bit is zero
+	jnz something_else ; jump to something else if the bit is not zero (i.e set)
+
+entering a byte via front panel:
+	set A8
+	set A9 up and back down
+
