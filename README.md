@@ -32,12 +32,13 @@ There may also be a few library routines used by multiple programs, such as the 
 ## Running the programs
 
 A quick hacky solution for running .hex files is included in runit.py. To use it, make sure your user has access to the serial group and then do the following:
+
+First, ensure the altair is stopped and that debugging is enabled.
+
 ```sh
  $ pip install pyserial
  $ python runit.py bin/cylon.hex
 ```
-
-The script will tell you to hit stop on the Altair and hit enter. Do so, the program will then be uploaded using the debugger on altairduino.
 
 For this to work you need serial input enabled on your altairduino. You should also use the provided 52-usb.rules if you don't have permissions setup correctly:
 
