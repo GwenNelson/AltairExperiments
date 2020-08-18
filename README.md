@@ -12,6 +12,14 @@ $ objcopy -v -I binary -O ihex frontecho.bin frontecho.ihex
 
 This will produce frontecho.bin, frontecho.ihex and frontecho.lis.
 
+A makefile is provided that defaults to building using asm8080, to use z80asm instead pass ```USE_Z80ASM=1```:
+
+```sh
+$ make USE_Z80ASM=1
+```
+
+The output files will be placed in the bin/ directory, please note that some of the list files may be in bin/src/ when using z80asm.
+
 ## Programs included
  * cylon.asm     - a simple test of outputting to the front panel LEDs, makes the active LED move left and right like a cylon scanner
  * frontecho.asm - a simple test of echoing front panel input on sense switches to the LEDs
