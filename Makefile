@@ -14,7 +14,7 @@ bin/%.hex: bin/%.bin
 	objcopy -v -I binary -O ihex $< $@
 else
 bin/%.hex: src/%.asm
-	asm8080 -obin/$* -lbin/$*.lst $<
+	asm8080 -Isrc/ -obin/$* -lbin/$*.lst $<
 endif
 
 all: bin/cylon.hex bin/cylon.bin bin/frontecho.hex bin/frontecho.bin bin/rotater.hex bin/rotater.bin
