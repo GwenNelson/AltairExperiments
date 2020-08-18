@@ -8,3 +8,6 @@ entering a byte via front panel:
 	set A8
 	set A9 up and back down
 
+converting a .bin to a .ihex:
+	objcopy -v -I binary -O ihex cylon.bin cylon.ihex
+
