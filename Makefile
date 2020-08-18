@@ -8,13 +8,13 @@ clean:
 
 ifeq ($(USE_Z80ASM),1)
 bin/%.bin: src/%.asm
-	z80asm --output=$@ --cpu=8080 --out-dir=bin/ -b -l $<
+	z80asm --output=$@ --cpu=8080 --inc-path=include/ --out-dir=bin/ -b -l $<
 
 bin/%.hex: bin/%.bin
 	objcopy -v -I binary -O ihex $< $@
 else
 bin/%.hex: src/%.asm
-	asm8080 -Isrc/ -obin/$* -lbin/$*.lst $<
+	asm8080 -Iinclude/ -obin/$* -lbin/$*.lst $<
 endif
 
 all: bin/cylon.hex bin/cylon.bin bin/frontecho.hex bin/frontecho.bin bin/rotater.hex bin/rotater.bin

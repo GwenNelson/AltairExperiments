@@ -4,7 +4,7 @@
 
         lxi  b,000fh  ; init timer delay value for timer, we set this quite high because fast feedback is important
 
-	INCLUDE "display.asm"
+	INCLUDE "display.inc"
 
 main_loop:
 	in 0ffh	; read the sense switches

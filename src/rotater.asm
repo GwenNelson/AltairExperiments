@@ -9,7 +9,7 @@
 
         lxi  b,0003h  ; init timer delay value for timer, we set this quite high because fast feedback is important
 
-	include display.asm
+	INCLUDE "display.inc"
 
 	in 0ffh       ; read the sense switches
 	sta input_var ; store it into input_var
