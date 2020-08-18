@@ -2,7 +2,8 @@
 
 This repo contains some bare metal programs for the Altair 8800, tested on the altairduino.
 
-The code is compiled using asm8080 found here: https://github.com/begoon/asm8080
+The code is compiled using asm8080 found here: https://github.com/begoon/asm8080.
+
 A lot of the code will also compile using z88dk's z80asm, for example:
 
     $ z80asm --cpu=8080 -b -l frontecho.asm 
