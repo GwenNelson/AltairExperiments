@@ -38,5 +38,13 @@ A quick hacky solution for running .hex files is included in runit.sh. To use it
 
 The script will tell you to hit stop on the Altair and hit enter. Do so, the program will then be uploaded using the debugger on altairduino.
 
-For this to work you need serial input enabled on your altairduino.
+For this to work you need serial input enabled on your altairduino. You should also use the provided 52-usb.rules if you don't have permissions setup correctly:
+
+```sh
+ $ sudo cp 52-usb.rules /etc/udev/rules.d/
+ $ sudo udevadm control --reload
+ $ sudo udevadm control --reload-rules
+```
+
+This will allow any user to access USB serial devices, so be warned.
 
