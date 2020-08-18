@@ -34,6 +34,7 @@ rotate_it:
 update_it:
 	in 0ffh
 	ani 07fh  ; lose the A15 bit
+	rrc
 	sta input_var
 	ret
 
