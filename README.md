@@ -31,9 +31,10 @@ There may also be a few library routines used by multiple programs, such as the 
 
 ## Running the programs
 
-A quick hacky solution for running .hex files is included in runit.sh. To use it, make sure your user has access to the serial group and then do the following:
+A quick hacky solution for running .hex files is included in runit.py. To use it, make sure your user has access to the serial group and then do the following:
 ```sh
- $ ./runit.sh bin/cylon.hex
+ $ pip install pyserial
+ $ python runit.py bin/cylon.hex
 ```
 
 The script will tell you to hit stop on the Altair and hit enter. Do so, the program will then be uploaded using the debugger on altairduino.
@@ -47,4 +48,5 @@ For this to work you need serial input enabled on your altairduino. You should a
 ```
 
 This will allow any user to access USB serial devices, so be warned.
+
 
