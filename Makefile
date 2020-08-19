@@ -20,11 +20,13 @@ endif
 HEXFILES:=bin/cylon.hex\
 	  bin/frontecho.hex\
 	  bin/rotater.hex\
-	  bin/nibedit.hex
+	  bin/nibedit.hex\
+	  bin/vti-rtc-test.hex
 
 BINFILES:=bin/cylon.bin\
 	  bin/frontecho.bin\
 	  bin/rotater.bin\
-	  bin/nibedit.hex
+	  bin/nibedit.hex\
+	  bin/vti-rtc-test.bin
 
 all: $(HEXFILES) $(BINFILES)

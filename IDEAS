@@ -47,10 +47,31 @@ simple prototype of PWM:
 
 sub timers
 	interrupt fires every 1ms
-	for every 5ms:
-		increment a timer, when it hits 5, reset and fire the 5ms timer
+	1ms == 1%
+	duty cycle = 25%:
+		every 75 cycles, switch on for 25 cycles
+	duty cycle = 50%:
+		every 50 cycles, switch on for 50 cycles
 
 every clock tick, update display register immediately
+use display_out with minimal delay
+
+increment HL pair by 1 only
+ldax 4 times after each increment
+
+clock period is 0xFFFF
+
+use single 8-bit register
+	instead of dad d:
+	inr b (increment 8-bit register)
+
+when b carries:
+	1 clock tick
+	check for bits to invert, check the bit's counter and decrement 1
+	if a bit is on 25% duty cycle:
+		if high, switch state to low and set counter to 75
+		if low,  switch state to high and set counter to 25
+	ldax d to update display
 
 
 1D image viewer
