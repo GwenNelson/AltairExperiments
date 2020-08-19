@@ -6,8 +6,7 @@
 
 	jmp isr
 
-	ORG 17673q
-	
+	ORG 100h
 
 start:	mvi a,255 ; configure stack
 	mov h,a
