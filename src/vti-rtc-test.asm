@@ -9,7 +9,12 @@
 	ORG 17673q
 	
 
-start:	mvi a,360q
+start:	mvi a,255 ; configure stack
+	mov h,a
+	mov l,a
+	sphl
+
+	mvi a,360q
 	out 254
 	ei
 
@@ -21,4 +26,4 @@ isr:	di
 	ori 330q
 	out 254
 	ei
-	jmp loop
+	ret
