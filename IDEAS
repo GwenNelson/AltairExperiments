@@ -84,3 +84,6 @@ Chrome dinosaur style game
 Save the bit: the bit will move continously (i.e. Kill The Bit), another bit will appear at random and you need to press any switch the moment the two bits hit. Could get harder over time?
 
 1D portal clone
+
+crazy UART:
+	7-bit ASCII, but if a byte begins with a 1 it goes to another UART - because why not?

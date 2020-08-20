@@ -11,3 +11,26 @@ entering a byte via front panel:
 converting a .bin to a .ihex:
 	objcopy -v -I binary -O ihex cylon.bin cylon.ihex
 
+zcc calling convention:
+	push params one at a time
+	caller cleans up stack
+	return value is in hl
+	e.g
+		bios(1,2,3)
+
+	; push params one at a time
+	mvi hl,1
+	push hl
+	mvi hl,2
+	push hl
+	mvi hl,3
+	push hl
+	
+	call bios
+	
+	pop bc
+	pop bc
+	pop bc
+	
+	; return value is in hl	
+
