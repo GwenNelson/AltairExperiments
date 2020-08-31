@@ -87,3 +87,9 @@ Save the bit: the bit will move continously (i.e. Kill The Bit), another bit wil
 
 crazy UART:
 	7-bit ASCII, but if a byte begins with a 1 it goes to another UART - because why not?
+
+simple CLI over UART
+
+simple readline-type line editor
+
+
