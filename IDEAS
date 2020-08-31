@@ -92,4 +92,21 @@ simple CLI over UART
 
 simple readline-type line editor
 
+table of commands and subroutines for CLI
+command parameters for CLI
+
+position independent code:
+	to calculate current PC:
+		DI
+		store current value at address 0x0000, push to stack
+		store a RET at 0x0000
+		call 0x0000
+		restore previous 0x0000
+		DEC SP
+		DEC SP
+		POP BC
+		B:C now contains address of code after CALL above
+		EI
+
+https://mark-ogden.uk/mirrors/www.cirsovius.de/CPM/Projekte/Artikel/Programm/PosIndepent/PosIndepent-en.html
 
