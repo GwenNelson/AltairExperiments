@@ -40,6 +40,9 @@ First, ensure the altair is stopped and that debugging is enabled.
  $ python runit.py bin/cylon.hex
 ```
 
+Another tool is included named reboot.py, ONLY use it if you are plugged into the native port of the altairduino's due - otherwise it'll erase flash.
+You have been warned.
+
 For this to work you need serial input enabled on your altairduino. You should also use the provided 52-usb.rules if you don't have permissions setup correctly:
 
 ```sh
