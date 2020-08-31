@@ -128,6 +128,9 @@ writeStr:
 		jmp writeStr
 ; ======================================================================
 
+
+
+
 ; ======================================================================
 ;  strcmp routine
 ;   takes addresses of 2 strings in b:c and d:e and compares them
@@ -153,6 +156,8 @@ strcmp:
 
 ; ======================================================================
 
+
+
 promptStr:	db "> ",0
 nlStr:		db 0Dh,0Ah,0
 
@@ -170,5 +175,5 @@ helpStr:	db "Valid commands are ",0Dh,0AH
 
 inputBufCurPos: dw inputBuf
 		; we reserve a buffer here and allow to expand to fill up RAM
-inputBuf:	db 0
+inputBuf:	ds 1024
 

@@ -100,6 +100,5 @@ nlStr:		db 0Dh,0Ah,0
 youEnteredStr:	db "You entered: ",0
 
 inputBufCurPos: dw inputBuf
-		; we reserve a buffer here and allow to expand to fill up RAM
-inputBuf:	db 0
+inputBuf:	ds 1024
 
