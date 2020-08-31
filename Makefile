@@ -17,16 +17,9 @@ bin/%.hex: src/%.asm
 	asm8080 -Iinclude/ -obin/$* -lbin/$*.lst $<
 endif
 
-HEXFILES:=bin/cylon.hex\
-	  bin/frontecho.hex\
-	  bin/rotater.hex\
-	  bin/nibedit.hex\
-	  bin/vti-rtc-test.hex
+SOURCES  := $(wildcard src/*.asm)
+HEXFILES := $(patsubst src/%.asm, bin/%.hex, $(SOURCES))
+BINFILES := $(patsubst src/%.asm, bin/%.bin, $(SOURCES)) 
 
-BINFILES:=bin/cylon.bin\
-	  bin/frontecho.bin\
-	  bin/rotater.bin\
-	  bin/nibedit.hex\
-	  bin/vti-rtc-test.bin
 
 all: $(HEXFILES) $(BINFILES)
