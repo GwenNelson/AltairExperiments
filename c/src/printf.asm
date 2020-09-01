@@ -1,5 +1,7 @@
 	GLOBAL _printf
 
+	XLIB _printf
+
 ._printf
 	pop d  ; pop return address
 	pop b  ; pop string param
