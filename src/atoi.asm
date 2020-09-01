@@ -15,12 +15,12 @@ atoi:
 atoiloop:	ldax b ; load first character
 		cpi 0  ; compare with 0, and return if so
 		rz
+
+		sui 48
 		
 		lxi d,0
 		lhld numResult
 		xchg
-
-		sui 48
 
 		; now we multiply D:E by 10
 		dad d ; H=H*1

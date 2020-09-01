@@ -169,7 +169,7 @@ invalidCmdStr:	db "Invalid command!",0Dh,0Ah,0
 greetPromptStr:	db "Please enter your name: ",0
 greetStr:	db "Hello ",0
 helpStr:	db "Valid commands are ",0Dh,0AH
-		db "  [help]  - display this list",0Dh,0Ah,
+		db "  [help]  - display this list",0Dh,0Ah
 		db "  [greet] - runs a simple greeting demo",0Dh,0Ah,0
 
 
