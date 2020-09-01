@@ -32,6 +32,9 @@ _printf:
 		cpi 'x'			; check if it's a hex value
 		jz nested_hex		; if yes, start handling hex
 
+		cpi 'd'			; check if it's a decimal value
+		jz nested_dec		; if yes, start handling decimal
+
 		jmp continue_write	; else, go back to main loop
 
 	nested_str:
@@ -54,6 +57,17 @@ _printf:
 		push h  ; preserve h
 		push d  ; push nested param back to the stack
 		call _puts_hex
+		pop h
+		pop b
+		jmp writeStr
+
+	nested_dec:
+		inx b
+		pop d
+		push b
+		push h
+		push d
+		call _puts_dec
 		pop h
 		pop b
 		jmp writeStr
