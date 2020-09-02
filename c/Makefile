@@ -15,16 +15,16 @@ clean:
 	rm -f zcc_opt.def
 
 bin/start.o: src/start.asm
-	z80asm --cpu=8080 --output=$@ -l  $<
+	z80asm -m8080 -o$@ -l  $<
 
 bin/printf.o: src/printf.asm
-	z80asm --cpu=8080 --output=$@ -l  $<
+	z80asm -m8080 -o$@ -l  $<
 
 bin/stdio.lib: bin/printf.o
-	z80asm --cpu=8080 -x$@ $^
+	z80asm -m8080 -x$@ $^
 
 bin/main.o: bin/main.asm
-	z80asm --cpu=8080 --output=$@ -l  $<
+	z80asm -m8080 -o$@ -l  $<
 
 bin/main.asm: src/main.c
 	sccz80 -m8080 $< -o $@
