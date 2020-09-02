@@ -1,3 +1,6 @@
+	lxi h,stack_top
+	sphl
+
         mvi a,03h
         out 10h
 
@@ -63,3 +66,7 @@ neghl:	mov	a,h	; HL = -HL; i.e. HL = (~HL) + 1
 negf:	db	0	; Space for negative flag
 	db	"-00000"
 num:	db	'$'	; Space for number
+
+stack_bottom:
+	ds 128
+stack_top:

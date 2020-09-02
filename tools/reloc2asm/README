@@ -1,0 +1,16 @@
+This is a simple script that produces a relocatable executable using the .reloc file from z80asm.
+
+Once done, a new .asm file is produced that contains a relocation routine and the original .bin file.
+
+This routine requires the load address in H:L.
+
+To test, do this:
+
+asm2reloc relocfile binfile >reloc.asm
+z80asm -m8080 -b reloc.asm
+cat reloc.bin binfile >reloc2.bin
+srec_cat reloc2.bin -binary -offset 0x100 -o reloc.hex -intel
+asm8080 jmp2reloc.asm
+
+now load jmp2reloc.hex and reloc.hex into the altair
+
