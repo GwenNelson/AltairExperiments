@@ -30,7 +30,7 @@ bin/main.asm: src/main.c
 	sccz80 -m8080 $< -o $@
 
 bin/ctest.bin: bin/start.o bin/stdio.lib bin/main.o
-	z80asm --cpu=8080 -v -b -s -l -m -g -o$@ -ibin/stdio.lib bin/start.o bin/main.o
+	z80asm -m8080 -v -b -s -l -m -g -o$@ -lbin/stdio.lib bin/start.o bin/main.o
 
 bin/ctest.hex: bin/ctest.bin
 	objcopy -v -I binary -O ihex $< $@

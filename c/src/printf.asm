@@ -32,8 +32,8 @@ _printf:
 		cpi 'x'			; check if it's a hex value
 		jz nested_hex		; if yes, start handling hex
 
-		cpi 'd'			; check if it's a decimal value
-		jz nested_dec		; if yes, start handling decimal
+		;cpi 'd'			; check if it's a decimal value
+		;jz nested_dec		; if yes, start handling decimal
 
 		jmp continue_write	; else, go back to main loop
 
@@ -67,7 +67,7 @@ _printf:
 		push b
 		push h
 		push d
-		call _puts_dec
+		;call _puts_dec
 		pop h
 		pop b
 		jmp writeStr
