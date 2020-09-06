@@ -1,3 +1,4 @@
+	call 5
 	lxi h,stack_top
 	sphl
 
