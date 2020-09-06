@@ -39,12 +39,15 @@ int main(int argc, char** argv) {
 		}
 	}
 	trk = 0;
+	int s =0;
+	size_t file_size = (uint16_t)boot_stat.st_size;
 	for(i=0; i<bootloader_sectors; i++) {
-		if(i > (FLOPPY_88DCDD_MAX_BOOTLEN / 2 / 128)) trk++;
-		fread(&(floppy.boot_tracks[trk].sectors[i].payload),FLOPPY_88DCDD_PAYLOAD_LEN,1,bootloader_fd);
-		floppy.boot_tracks[trk].sectors[i].file_size = (uint16_t)boot_stat.st_size;
-		floppy.boot_tracks[trk].sectors[i].checksum_byte = 0x00;
-		for(c=0; c<FLOPPY_88DCDD_PAYLOAD_LEN; c++) floppy.boot_tracks[trk].sectors[i].checksum_byte+=floppy.boot_tracks[trk].sectors[i].payload[c];
+		//		if(i > (FLOPPY_88DCDD_MAX_BOOTLEN / 2 / 128)) trk++;
+		size_t ret = fread(&(floppy.boot_tracks[trk].sectors[s].payload),1,FLOPPY_88DCDD_PAYLOAD_LEN,bootloader_fd);
+		floppy.boot_tracks[trk].sectors[s].file_size = file_size;
+		floppy.boot_tracks[trk].sectors[s].checksum_byte = 0x00;
+		for(c=0; c<FLOPPY_88DCDD_PAYLOAD_LEN; c++) floppy.boot_tracks[trk].sectors[s].checksum_byte+=floppy.boot_tracks[trk].sectors[s].payload[c];
+		s += 2;
 	}
 
 	fclose(bootloader_fd);

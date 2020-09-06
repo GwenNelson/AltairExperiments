@@ -5,12 +5,17 @@
 
                 org 0
 
+
                 ; reset UART
                 mvi a,03h
                 out 10h
 
                 mvi a,15h
                 out 10h
+
+	        lxi h, stack_top
+        	sphl
+
 
 		lxi b,multAstr
 		call writeStr
@@ -50,7 +55,7 @@
 		lxi b,nlStr
 		call writeStr
 
-loop:		jmp loop
+		hlt
 
 
 
@@ -144,3 +149,7 @@ multB:  	dw 4
 ; 32-bit result
 multResult: 	dw 0
 		dw 0
+
+stack_bottom:
+		ds 128
+stack_top:

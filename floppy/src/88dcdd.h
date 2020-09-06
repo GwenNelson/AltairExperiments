@@ -30,7 +30,7 @@ typedef struct __attribute__((__packed__)) floppy_sector_t {
 	uint8_t  payload[FLOPPY_88DCDD_PAYLOAD_LEN];
 	uint8_t  sync_byte;
 	uint8_t  checksum_byte;
-	uint8_t  padding[3];
+	uint8_t  padding[4];
 } floppy_sector_t;
 
 typedef struct __attribute__((__packed__)) floppy_track_t {
